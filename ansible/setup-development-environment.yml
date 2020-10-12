@@ -1,20 +1,6 @@
 - name: Initialize a development environment for golang
   hosts: localhost
-  become: yes
 
   tasks:
-    # To upgrade versions, add idempotent uninstall to this ansible playbook https://golang.org/doc/manage-install#uninstalling
-    - name: Ensure golang is downloaded
-      get_url:
-        url: https://golang.org/dl/go1.15.2.linux-amd64.tar.gz
-        dest: "{{playbook_dir}}/files/go.tar.gz"
-        mode: a=wrx
-    - name: Extract golang executable
-      unarchive:
-        src: go.tar.gz
-        dest: "/usr/local"
-    - name: Add go binary to system-wide path
-      lineinfile:
-        line: export PATH=$PATH:/usr/local/go/bin
-        path: /etc/profile
-
+    #- include: tasks/install-golang.yml
+    - include: tasks/add-folder-for-compiled-binaries.yml

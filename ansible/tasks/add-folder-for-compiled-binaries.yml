@@ -1,0 +1,9 @@
+# Responsibility: Create and configure the "go install path"
+# for storing executable binaries of compiled code
+# according to the official documentation
+# See https://golang.org/doc/tutorial/compile-install
+
+- name: Add the "go install path" to the current user's path variable
+  lineinfile:
+    line: export PATH=$PATH:/home/{{ansible_user_id}}/go/bin
+    path: /home/{{ansible_user_id}}/.profile

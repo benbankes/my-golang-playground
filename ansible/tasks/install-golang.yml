@@ -1,0 +1,22 @@
+# Responsibility: Install golang according to the official documentation
+# See https://golang.org/doc/tutorial/getting-started#install
+#
+# To upgrade versions, add idempotent uninstall to this ansible playbook
+# See https://golang.org/doc/manage-install#uninstalling
+
+- name: Ensure golang is downloaded
+  get_url:
+    url: https://golang.org/dl/go1.15.2.linux-amd64.tar.gz
+    dest: "{{playbook_dir}}/files/go.tar.gz"
+    mode: a=wrx
+  become: yes
+- name: Extract golang executable
+  unarchive:
+    src: go.tar.gz
+    dest: "/usr/local"
+  become: yes
+- name: Add go binary to system-wide path
+  lineinfile:
+    line: export PATH=$PATH:/usr/local/go/bin
+    path: /etc/profile
+  become: yes
