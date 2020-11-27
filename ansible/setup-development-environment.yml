@@ -2,5 +2,5 @@
   hosts: localhost
 
   tasks:
-    #- include: tasks/install-golang.yml
+    - include: tasks/install-golang.yml
     - include: tasks/add-folder-for-compiled-binaries.yml
