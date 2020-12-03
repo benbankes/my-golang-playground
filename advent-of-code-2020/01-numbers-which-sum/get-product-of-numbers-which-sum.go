@@ -6,6 +6,7 @@ import (
 	"strconv"
 )
 
+// See https://adventofcode.com/2020/day/1
 func main() {
 	entries := map[int]bool{
 		1630: true,
